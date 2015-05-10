@@ -1,0 +1,43 @@
+﻿<style>
+    canvas {
+        border: 1px solid black;
+        align-self: center;
+    }
+</style>
+<script src="~/Scripts/CustomScript/tweetshirt.js"></script>
+
+<h1>Tweet Shirt</h1>
+<div>
+    <canvas width="600" height="200" id="tshirtCanvas"></canvas>
+</div>
+<form>
+    <p>
+        <label for="backgroundColor">Select background color:</label>
+        <select id="backgroundColor">
+            <option value="white" selected="selected">White</option>
+            <option value="black">Black</option>
+        </select>
+    </p>
+    <p>
+        <label for="shape">Circles or squares?</label>
+        <select id="shape">
+            <option value="none" selected="selected">Neither</option>
+            <option value="circles">Circles</option>
+            <option value="squares">Squares</option>
+        </select>
+    </p>
+    <p>
+        <label for="foregroundColor">Select text color:</label>
+        <select id="foregroundColor">
+            <option value="black" selected="selected">Black</option>
+            <option value="white">White</option>
+        </select>
+    </p>
+    <p>
+        <label for="tweets">Pick a tweet:</label>
+        <select id="tweets"></select>
+    </p>
+    <p>
+        <input type="button" id="previewButton" value="Preview">
+    </p>
+</form>
