@@ -1,29 +1,26 @@
-﻿function getAllQueries() {
-	var responseData = "";
+﻿$(document).ready(function () {
+
+	function renderTemplate() {
+		var listItemTemplate = Handlebars.compile($("#listItemTemplate").html());
+
+		return listItemTemplate;
+	}
+
+	function renderData(data) {
+		var template = renderTemplate();
+		$("#lisItemtHead").html(template(data));
+	}
 
 	$.ajax({
-		url: "localhost:52499/api/queries/GetAllQueries",
+		method: "GET",
+		url: "http://localhost:52499/api/queries",
 		success: function (response) {
-			responseData = response.data;
+			var query = { query: response }
+			renderData(query);
 		}
 	});
 
-	return responseData;
-}
 
-$(document).ready(function () {
-	var testdata = {
-		query: [
-			{ itemlink: "/query1", item: "Query 1" },
-			{ itemlink: "/query1", item: "Query 2" },
-			{ itemlink: "#", item: "Query 3" },
-			{ itemlink: "#", item: "Query 4" },
-			{ itemlink: "#", item: "Query 5" }
-		]
-	};
-
-	var listItemTemplate = Handlebars.compile($("#listItemTemplate").html());
-	$("#lisItemtHead").html(listItemTemplate(getAllQueries()));
 });
 
 function validateSearchTerm() {

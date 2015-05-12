@@ -22,7 +22,7 @@ namespace QueryMonger.Controllers
         /// Get all queries
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles="ReportUser")]
+        //[Authorize(Roles="ReportUser")]
         [HttpGet]
         [Route("queries")]
 		public IQueryable<Query> GetAllQueries()
