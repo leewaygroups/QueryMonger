@@ -1,11 +1,30 @@
-﻿window.onload = init;
+﻿function getAllQueries() {
+	var responseData = "";
 
-function init() {
-	var lisItemtHead = document.getElementById("lisItemtHead");
-	lisItemtHead.appendChild(listItemTemplate());
+	$.ajax({
+		url: "localhost:52499/api/queries/GetAllQueries",
+		success: function (response) {
+			responseData = response.data;
+		}
+	});
 
-	document.getElementsByName("searchForm").onsubmit = validateSearchTerm;
+	return responseData;
 }
+
+$(document).ready(function () {
+	var testdata = {
+		query: [
+			{ itemlink: "/query1", item: "Query 1" },
+			{ itemlink: "/query1", item: "Query 2" },
+			{ itemlink: "#", item: "Query 3" },
+			{ itemlink: "#", item: "Query 4" },
+			{ itemlink: "#", item: "Query 5" }
+		]
+	};
+
+	var listItemTemplate = Handlebars.compile($("#listItemTemplate").html());
+	$("#lisItemtHead").html(listItemTemplate(getAllQueries()));
+});
 
 function validateSearchTerm() {
 	var regExp = /\w+/;
@@ -13,9 +32,4 @@ function validateSearchTerm() {
 	if (regExp.test(val)) {
 		alert(val);
 	}
-}
-
-function listItemTemplate() {
-	var compile = _.template('<%_.forEach(items, function(item){%><a><%- user %></a><%}); %>');
-	compile({ 'items': ["item1", "Item2", "Item3"] });
 }

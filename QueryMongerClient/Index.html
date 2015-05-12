@@ -22,7 +22,7 @@
 		}
 	</style>
 </head>
-<body onload="test">
+<body>
 
 	<div class="navbar navbar-inverse navbar-fixed-top no-border monger-navbar" role="navigation">
 		<div class="container">
@@ -76,7 +76,7 @@
 			<div class="input-group">
 				<input id="searchMain" type="text" class="form-control" placeholder="Search for...">
 				<span class="input-group-btn color-default">
-					<button class="btn btn-default" type="submit" onclick="test(this.form);"><i class="glyphicon glyphicon-search"></i></button>
+					<button class="btn btn-default" type="submit" onclick="validateSearchTerm();"><i class="glyphicon glyphicon-search"></i></button>
 				</span>
 			</div>
 		</form>
@@ -84,17 +84,16 @@
 	</div>
 	<div class="container col-md-8 col-md-offset-2">
 		<div id="lisItemtHead" class="list-group">
-			<!--<a href="#" class="list-group-item">Cras justo odio</a>
-			<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-			<a href="#" class="list-group-item">Morbi leo risus</a>
-			<a href="#" class="list-group-item">Porta ac consectetur ac</a>
-			<a href="#" class="list-group-item">Vestibulum at eros</a>-->
 		</div>
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script id="listItemTemplate" type="text/x-handdlebars-template">
+		{{#query}}
+		<a href="{{itemlink}}" class="list-group-item">{{item}}</a>
+		{{/query}}
+	</script>
 	<script src="Scripts/jquery-2.1.3.min.js"></script>
 	<script src="Scripts/bootstrap.min.js"></script>
-	<script src="Scripts/lodash.js"></script>
+	<script src="Scripts/handlebars.js"></script>
 	<script src="App/app.js"></script>
 </body>
 </html>
