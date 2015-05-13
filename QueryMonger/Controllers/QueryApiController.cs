@@ -36,7 +36,7 @@ namespace QueryMonger.Controllers
         /// </summary>
         /// <param name="Id">The Id of the query</param>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         [Route("query/{id}", Name = "GetQueryById")]
         public Query GetQueryById(int Id = 0)
@@ -49,7 +49,7 @@ namespace QueryMonger.Controllers
 		/// </summary>
         /// <param name="query"> A TinyQuery object: Used to match the main & corresponding query in DB</param>
 		/// <returns></returns>
-        [Authorize(Roles="Admin")]
+        //[Authorize(Roles="Admin")]
         [Route("createQuery")]
 		[HttpPost]
         [ResponseType(typeof(TinyQuery))]
@@ -85,7 +85,7 @@ namespace QueryMonger.Controllers
         /// <param name="Id">UserId of the query owner</param>
         /// <param name="query"> A TinyQuery object: Used to match the main & corresponding query in DB</param>
         ///<returns></returns>
-        [Authorize(Roles="Admin")]
+        //[Authorize(Roles="Admin")]
 		[Route("edit/{query.QueryId}", Name = "EditQuery")]
         [HttpPut]
         public IHttpActionResult EditQuery(Query query)
@@ -107,7 +107,7 @@ namespace QueryMonger.Controllers
         /// <param name="Id">UserId of the query owner</param>
         /// <param name="query"> A TinyQuery object: Used to match the main & corresponding query in DB</param>
         /// <returns></returns>
-        [Authorize(Roles="Admin")]
+        //[Authorize(Roles="Admin")]
         [Route("delete/{id}", Name="Delete")]
         [HttpDelete]
         public IHttpActionResult DeleteQuery(int Id)
@@ -122,7 +122,7 @@ namespace QueryMonger.Controllers
 	    /// </summary>
 	    /// <param name="Id"></param>
 	    /// <returns></returns>
-        [Authorize(Roles = "User")]
+        //[Authorize(Roles = "User")]
         [Route("report/{id}")]
         [HttpGet]
 	    [ResponseType(typeof (Object))]
