@@ -24,13 +24,15 @@
 });
 
 function renderQueryResult(data) {
-	//TODO
+    //TODO: Implement data rendring to dynamic grid in webpage
+    alert("I was called!");
 }
 
 function getQueryResult(id) {
+    var intId = parseInt(id);
 	$.ajax({
 		method: "GET",
-		url: "http://localhost:52499/api/report/"+id,
+		url: "http://localhost:52499/api/report/" + intId,
 		success: function (response) {
 			var result = { result: response }
 			renderQueryResult(result);
