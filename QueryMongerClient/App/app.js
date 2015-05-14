@@ -1,13 +1,13 @@
 ﻿$(document).ready(function () {
 
-	function renderTemplate() {
+	function getQueryListTemplate() {
 		var listItemTemplate = Handlebars.compile($("#listItemTemplate").html());
 
 		return listItemTemplate;
 	}
 
-	function renderData(data) {
-		var template = renderTemplate();
+	function renderQueryList(data) {
+		var template = getQueryListTemplate();
 		$("#lisItemtHead").html(template(data));
 	}
 
@@ -15,27 +15,55 @@
 		method: "GET",
 		url: "http://localhost:52499/api/queries",
 		success: function (response) {
+
 			var query = { query: response }
-			renderData(query);
+			renderQueryList(query);
 		}
 	});
 
-
 });
 
-function renderQueryResult(data) {
-    //TODO: Implement data rendring to dynamic grid in webpage
-    alert("I was called!");
+function renderQueryDetail(data) {
+	//TODO: function to render singleton query detail template
 }
 
+function getQueryDetail(idArg) {
+	var id = parseInt(idArg);
+
+	$.ajax({
+		method: "GET",
+		url: "http://localhost:52499/api/query/" + id,
+		success: function (response) {
+
+			var query = { query: response }
+			renderQueryDetail(query);
+		}
+	});
+
+	window.location.replace("http://localhost:3786/");
+
+	window.onload = function () {
+		var lblTitle = document.getElementById("queryTitle");
+		lblTitle.setAttribute("data-id", id);
+		lblTitle.innerHTML = "Title: " + title;
+
+		var lblDescription = document.getElementById("queryDescription");
+		lblDescription.innerHTML = "Description: " + description;
+	};
+}
+
+
 function getQueryResult(id) {
-    var intId = parseInt(id);
+	var intId = parseInt(id);
 	$.ajax({
 		method: "GET",
 		url: "http://localhost:52499/api/report/" + intId,
 		success: function (response) {
-			var result = { result: response }
-			renderQueryResult(result);
+			$('#columns').columns({
+
+				data: response
+			}
+			);
 		}
 	});
 }
